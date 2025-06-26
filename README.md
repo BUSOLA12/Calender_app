@@ -28,7 +28,7 @@ A web-based application built with Django that allows users to securely sign in 
 
 ## 📸 Screenshot
 
-![Calendar View](screenshots/calender app.png)
+![Calendar View](screenshots/calender%20app.png)
 
 ---
 
