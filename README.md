@@ -26,10 +26,9 @@ A web-based application built with Django that allows users to securely sign in 
 
 ---
 
-## Screenshots
+## 📸 Screenshot
 
-*(Placeholder for screenshots)*  
-Add screenshots of the login page, dashboard, and calendar view here.
+![Calendar View](screenshots/calender app.png)
 
 ---
 
@@ -112,10 +111,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Author
 
-**Mrs. Iyiola Aabiodun**  
+**Iyiola Olubusola**  
 Feel free to reach out for questions or contributions:  
-- GitHub: [yourusername](https://github.com/yourusername)  
-- Email: your-email@example.com  
+- GitHub: [BUSOLA12](https://github.com/BUSOLA12)  
+- Email: iyiolaolubusola@gmail.com
 
 ---
 
