@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}My Calendar - Outlook Calendar Viewer{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2><i class="fas fa-calendar-alt me-2"></i>Your Upcoming Events</h2>
+                <p class="text-muted mb-0">Showing your next 10 calendar events</p>
+            </div>
+            <a href="{% url 'calendar_app:calendar' %}" class="btn btn-outline-primary">
+                <i class="fas fa-sync-alt me-1"></i> Refresh
+            </a>
+        </div>
+
+        {% if events %}
+            <div class="row">
+                {% for event in events %}
+                    <div class="col-12 mb-3">
+                        <div class="card event-card shadow-sm">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <h5 class="card-title mb-2">
+                                            <i class="fas fa-calendar-day text-primary me-2"></i>
+                                            {{ event.subject }}
+                                        </h5>
+                                        
+                                        <div class="event-time mb-2">
+                                            <i class="fas fa-clock me-2"></i>
+                                            <strong>{{ event.start.formatted }}</strong>
+                                            {% if event.end.formatted != event.start.formatted %}
+                                                - {{ event.end.time }}
+                                            {% endif %}
+                                        </div>
+                                        
+                                        {% if event.location %}
+                                            <div class="event-location mb-2">
+                                                <i class="fas fa-map-marker-alt me-2"></i>
+                                                {{ event.location }}
+                                            </div>
+                                        {% endif %}
+                                        
+                                        {% if event.organizer %}
+                                            <div class="text-muted small">
+                                                <i class="fas fa-user me-2"></i>
+                                                Organized by: {{ event.organizer }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="col-md-4 text-md-end">
+                                        <div class="d-flex flex-column align-items-md-end">
+                                            <span class="badge bg-primary mb-2">
+                                                {{ event.start.date }}
+                                            </span>
+                                            {% if event.attendee_count > 0 %}
+                                                <small class="text-muted">
+                                                    <i class="fas fa-users me-1"></i>
+                                                    {{ event.attendee_count }} attendee{{ event.attendee_count|pluralize }}
+                                                </small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-calendar-times fa-5x text-muted mb-4"></i>
+                <h3 class="text-muted">No upcoming events</h3>
+                <p class="text-muted">You don't have any calendar events scheduled for the next period.</p>
+                <a href="{% url 'calendar_app:index' %}" class="btn btn-outline-primary">
+                    <i class="fas fa-home me-1"></i> Back to Home
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if events %}
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <p class="text-muted small">
+                <i class="fas fa-info-circle me-1"></i>
+                Events are displayed in chronological order. Times are shown in your local timezone.
+            </p>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="text-center mb-5">
+            <i class="fas fa-calendar-alt fa-5x text-primary mb-3"></i>
+            <h1 class="display-4">Outlook Calendar Viewer</h1>
+            <p class="lead">
+                Securely view your next 10 Outlook calendar events with Microsoft Graph API integration.
+            </p>
+        </div>
+
+        {% if not request.session.user_name %}
+            <div class="card shadow">
+                <div class="card-body text-center p-5">
+                    <h3 class="card-title mb-4">Get Started</h3>
+                    <p class="card-text mb-4">
+                        Sign in with your Microsoft account to view your upcoming calendar events. 
+                        This app uses OAuth 2.0 for secure authentication and only requests read access to your calendar.
+                    </p>
+                    <a href="{% url 'calendar_app:login' %}" class="btn btn-primary btn-lg">
+                        <i class="fab fa-microsoft me-2"></i>
+                        Sign in with Microsoft
+                    </a>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Secure Authentication</h5>
+                            <p class="card-text">Uses Microsoft OAuth 2.0 for secure login without storing your password.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-eye fa-3x text-info mb-3"></i>
+                            <h5 class="card-title">Read-Only Access</h5>
+                            <p class="card-text">Only requests permission to read your calendar events, never modify them.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-cloud fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Microsoft Graph API</h5>
+                            <p class="card-text">Powered by Microsoft's official Graph API for reliable calendar access.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card shadow">
+                <div class="card-body text-center p-5">
+                    <h3 class="card-title mb-4">Welcome back, {{ request.session.user_name }}!</h3>
+                    <p class="card-text mb-4">
+                        You're signed in as {{ request.session.user_email }}. 
+                        Click below to view your upcoming calendar events.
+                    </p>
+                    <a href="{% url 'calendar_app:calendar' %}" class="btn btn-success btn-lg">
+                        <i class="fas fa-calendar-check me-2"></i>
+                        View My Calendar
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
