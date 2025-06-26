@@ -1,0 +1,27 @@
+# Ignore Python files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Ignore virtual environments
+env/
+venv/
+
+# Ignore Django files
+db.sqlite3
+
+# Ignore environment variables
+.env
+
+# Ignore VS Code settings (optional)
+.vscode/
+
+# Ignore static/media files
+staticfiles/
+media/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
